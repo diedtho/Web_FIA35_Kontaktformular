@@ -16,13 +16,15 @@ namespace Web_FIA35_Kontaktformular.Controllers
         }
         [HttpPost]
         public IActionResult Index(string inpVorname, string inpNachname, DateTime inpGeburtsdatum, string rbGeschlecht, string chbWin, string chbLinux,
-            string chbIOs, string chbAndroid, string npBemerkungen)
+            string chbIOs, string chbAndroid, string inpBemerkungen)
         {
+            string bem = HttpContext.Request.Form["inpBemerkungungen"].ToString(); // zusätzliche Möglichkeit auf die gesendeten Daten zuzugreifen (über den Query-String)
+
             ViewBag.Vorname = inpVorname;
             ViewBag.Nachname = inpNachname;
             ViewBag.Geburtsdatum = inpGeburtsdatum.ToShortDateString();
             ViewBag.Geschlecht = rbGeschlecht;
-            ViewBag.Bemerkungen = npBemerkungen;
+            ViewBag.Bemerkungen = inpBemerkungen;
 
             List<string> betriebsSysteme = new List<string>();
             if (chbWin != null) {
