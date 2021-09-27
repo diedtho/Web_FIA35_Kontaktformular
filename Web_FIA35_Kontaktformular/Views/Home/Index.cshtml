@@ -1,0 +1,104 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div style="width:80%;margin:auto;background-color:turquoise;padding:10px;border-radius:10px" />
+    @if (ViewBag.Vorname != null)
+    {
+<form action="/home/index" method="get">
+    <br />
+
+    <table border="1">
+        <tr>
+            <td><label for="tdVorname">Vorname</label></td>
+            <td id="tdVorname">@ViewBag.Vorname</td>
+            <td><label for="tdNachname">Nachname</label></td>
+            <td id="tdNachname">@ViewBag.Nachname</td>
+        </tr>
+        <tr>
+            <td><label for="tdGeburtstag">Geburtstag</label></td>
+            <td id="tdGeburtstag">@ViewBag.Geburtsdatum</td>
+            <td><label for="tdGeschlecht">Geschlecht</label></td>
+            <td id="tdGeschlecht">@ViewBag.Geschlecht</td>
+        </tr>
+    </table>
+    <br />
+    <label for="tdBetriebssysteme">Kenntnisse Betriebssysteme</label>
+    <ul>
+        @foreach (var elem in ViewBag.ListeBetriebssysteme)
+        {
+            <li>@elem</li>
+        }
+    </ul>
+
+    <br />
+
+</form>
+    }
+    else
+    {
+
+        <form action="/home/index" method="post">
+            <fieldset id="fldsPersonalData" name="fldsPersonalData">
+                <legend>Persönliche Daten</legend>
+                <input type="text" id="inpVorname" name="inpVorname" required pattern="[a-zA-Z-]+" placeholder="Ihr Vorname"/>
+                <label for="inpVorname">Vorname</label>
+                <br />
+                <input type="text" id="inpNachname" name="inpNachname" required pattern="[a-zA-Z-]+" placeholder="Ihr Nachname"/>
+                <label for="inpNachname">Nachname</label>
+                <br />
+                <input type="date" id="inpGeburtsdatum" name="inpGeburtsdatum" required value="1970-01-01" />
+                <label for="inpGeburtsDatum">Geburtsdatum</label>
+                <br />
+            </fieldset>
+            <fieldset id="fldsGeschlecht" name="fldsOS">
+                <legend>Geschlecht</legend>
+                <input type="radio" id="rbWeiblich" name="rbGeschlecht" value="weiblich" />
+                <label for="rbWeiblich">Weiblich</label>
+                <br />
+                <input type="radio" id="rbMaennlich" name="rbGeschlecht" value="männlich" />
+                <label for="rbMaennlich">Männlich</label>
+                <br />
+                <input type="radio" id="rbDivers" name="rbGeschlecht" value="divers" />
+                <label for="rbDivers">Divers</label>
+                <br />
+            </fieldset>
+            <fieldset id="fldsOS" name="fldsOS">
+                <legend>OS</legend>
+                <table>
+                    <tr>
+                        <td><input type="checkbox" id="chbWin" name="chbWin" value="ja" /></td>
+                        <td><label for="chbWin">Windows</label></td>
+                        <td><input type="checkbox" id="chbLinux" name="chbLinux" value="ja" /></td>
+                        <td><label for="chbLinux">Linux</label></td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" id="chbIOs" name="chbIOs" value="ja" /></td>
+                        <td><label for="chbIOs">IOs</label></td>
+                        <td><input type="checkbox" id="chbAndroid" name="chbAndroid" value="ja" /></td>
+                        <td><label for="chbAndroid">Android</label></td>
+                    </tr>
+                </table>
+
+            </fieldset>
+            <fieldset id="fldsBemerkungen" name="fldsBemerkungen">
+                <legend>Bemerkungen</legend>
+                <textarea type="text" name="inpBemerkungen" rows="10" style="width:100%"></textarea>
+                <br />
+            </fieldset>
+            <button type="submit" name="btnSubmit">Absenden</button>
+            <button type="reset" name="btnReset">Reset</button>
+        </form>
+    }
+
+</body>
+</html>
